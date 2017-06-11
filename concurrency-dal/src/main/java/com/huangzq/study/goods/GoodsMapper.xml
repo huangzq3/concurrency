@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.huangzq.study.goods.GoodsDao">
+
+        <select id="getGoodsById" resultType="Goods">
+            SELECT
+              id,
+              name,
+              stock,
+              version
+            FROM
+              goods
+            WHERE
+              id = #{id}
+        </select>
+
+        <update id="updateGoods" parameterType="Goods">
+            UPDATE goods
+            SET stock = #{stock}, version = version + 1
+            WHERE id = #{id}
+            AND version = #{version}
+            AND stock > 0
+        </update>
+
+</mapper>
